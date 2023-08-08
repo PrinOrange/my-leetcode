@@ -84,6 +84,12 @@ const config = {
             label: "All Notes",
           },
           {
+            type: "docSidebar",
+            sidebarId: "problemsSidebar",
+            position: "left",
+            label: "Problems",
+          },
+          {
             href: "https://github.com/prinorange/my-leetcode",
             label: "GitHub",
             position: "right",
@@ -111,7 +117,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} 但为君故, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} 但为君故`,
       },
       prism: {
         theme: lightCodeTheme,
