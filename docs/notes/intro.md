@@ -12,5 +12,4 @@ There may some wrong in my note and please read them with criticism.
 
 ## See also
 
-- [My leetcode profile](https://leetcode.cn/u/terminels/)
 - [My personal blog](https://terminels.com)

@@ -107,10 +107,6 @@ const config = {
                 to: "https://terminels.com",
               },
               {
-                label: "LeetCode",
-                href: "https://leetcode.cn/u/terminels/",
-              },
-              {
                 label: "GitHub",
                 href: "https://github.com/terminels",
               },
