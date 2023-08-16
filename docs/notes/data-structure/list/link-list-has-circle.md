@@ -4,19 +4,19 @@
 
 快慢双指针法的思路是：在链表中安置一个快指针和一个慢指针。快指针一次移动两步，慢指针一次移动一步。然后在无线循环内执行以下判断。
 
-+ 如果快指针或者慢指针指向了 `null` ，则停止程序，说明链表中无环。
-+ 如果快指针和慢指针在同一节点相遇，即同时指向一个节点，则停止程序，说明链表中有环。
+- 如果快指针或者慢指针指向了 `null` ，则停止程序，说明链表中无环。
+- 如果快指针和慢指针在同一节点相遇，即同时指向一个节点，则停止程序，说明链表中有环。
 
 ```c
 bool hasCycle(struct ListNode *head) {
     if (head == NULL) {
         return false;
     }
-    
+
     struct ListNode *slowPtr, *fastPtr;
     slowPtr = head;
     fastPtr = head->next;
-    
+
     while (fastPtr != NULL && fastPtr->next != NULL) {
         if (slowPtr == fastPtr) {
             return true;
@@ -24,7 +24,7 @@ bool hasCycle(struct ListNode *head) {
         slowPtr = slowPtr->next;
         fastPtr = fastPtr->next->next;
     }
-    
+
     return false;
 }
 ```

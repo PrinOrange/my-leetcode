@@ -32,27 +32,27 @@ $$
 int convertToDecimal(int num, int base) {
     int decimal = 0;
     int multiplier = 1;
-    
+
     while (num != 0) {
         int digit = num % 10;
         decimal += digit * multiplier;
         multiplier *= base;
         num /= 10;
     }
-    
+
     return decimal;
 }
 // 将10进制数转为n进制数
 void convertToBase(int num, int base) {
     int result[100];
     int i = 0;
-    
+
     while (num != 0) {
         result[i] = num % base;
         num /= base;
         i++;
     }
-    
+
     for (int j = i - 1; j >= 0; j--) {
         printf("%d", result[j]);
     }

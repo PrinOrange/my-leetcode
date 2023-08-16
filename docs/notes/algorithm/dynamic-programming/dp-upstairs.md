@@ -13,6 +13,7 @@ dp[i] = dp[i-1] + dp[i-2]
 $$
 
 代码实现：
+
 ```c
 #include <stdio.h>
 
@@ -20,15 +21,15 @@ int climbStairs(int n) {
     if (n <= 2) {
         return n;
     }
-    
+
     int dp[n+1];
     dp[1] = 1;
     dp[2] = 2;
-    
+
     for (int i = 3; i <= n; i++) {
         dp[i] = dp[i-1] + dp[i-2];
     }
-    
+
     return dp[n];
 }
 
@@ -36,7 +37,7 @@ int main() {
     int n = 5;
     int result = climbStairs(n);
     printf("爬上 %d 个台阶的方案数为：%d\n", n, result);
-    
+
     return 0;
 }
 ```
