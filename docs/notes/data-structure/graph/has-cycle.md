@@ -2,7 +2,7 @@
 
 ## 算法描述
 
-判断一个无向图是否有环的常用算法是深度优先搜索（DFS）。下面是使用DFS判断无向图是否有环的算法：
+判断一个无向图是否有环的常用算法是深度优先搜索（DFS）。下面是使用 DFS 判断无向图是否有环的算法：
 
 1. 初始化一个空的访问列表 `visited`，用于记录已经访问过的节点。
 2. 对于图中的每个节点 `v`，如果 `v` 没有被访问过，则执行以下步骤：
@@ -16,24 +16,24 @@
 
 ```python
 def has_cycle(graph):
-    visited = set()
+    visited = set()  # 记录已经访问过的节点的集合
 
     def dfs(node, parent):
-        visited.add(node)
-        for neighbor in graph[node]:
-            if neighbor not in visited:
-                if dfs(neighbor, node):
+        visited.add(node)  # 将当前节点加入到已访问集合中
+        for neighbor in graph[node]:  # 遍历当前节点的邻居节点
+            if neighbor not in visited:  # 如果邻居节点还未访问过
+                if dfs(neighbor, node):  # 递归调用dfs函数，如果返回True表示存在环路
                     return True
-            elif neighbor != parent:
+            elif neighbor != parent:  # 如果邻居节点已经被访问过，并且不是当前节点的父节点，则说明存在环路
                 return True
-        return False
+        return False  # 当前节点的所有邻居节点都遍历完，不存在环路
 
-    for node in graph:
-        if node not in visited:
-            if dfs(node, None):
+    for node in graph:  # 遍历图中的每个节点
+        if node not in visited:  # 如果节点未被访问过
+            if dfs(node, None):  # 调用dfs函数判断是否存在环路，如果返回True表示存在环路
                 return True
 
-    return False
+    return False  # 所有节点都遍历完，不存在环路
 ```
 
 在这个示例中，`graph` 是一个表示无向图的字典，其中键表示节点，值表示与节点相邻的节点列表。函数 `has_cycle` 返回一个布尔值，表示图中是否存在环。
