@@ -26,7 +26,7 @@ struct HuffmanNode* createNode(char data, int frequency) {
     return node;
 }
 
-// 构建 Huffman树 
+// 构建 Huffman树
 struct HuffmanNode* buildHuffmanTree(char data[], int frequency[], int size) {
     struct HuffmanNode** nodes = (struct HuffmanNode**)malloc(size * sizeof(struct HuffmanNode*));
     int i;
@@ -67,7 +67,7 @@ struct HuffmanNode* buildHuffmanTree(char data[], int frequency[], int size) {
     return root;
 }
 
-// 打印 Huffman树 
+// 打印 Huffman树
 void printHuffmanTree(struct HuffmanNode* root, int depth) {
     if (root == NULL) {
         return;
