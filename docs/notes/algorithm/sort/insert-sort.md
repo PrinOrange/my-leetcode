@@ -16,7 +16,7 @@
 
 插入排序的时间复杂度为 $O(n^2)$ ，其中 $n$ 是数组的长度。尽管插入排序的效率相对较低，但对于小规模的数据集合或部分有序的数组，它仍然是一个简单且有效的排序算法。它的优点是在原地排序，不需要额外的存储空间，**并且对于部分有序的数组，插入排序的性能较好。**
 
-<iframe src="//player.bilibili.com/player.html?aid=768623791&bvid=BV1er4y1b7o4&cid=585499230&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=768623791&bvid=BV1er4y1b7o4&cid=585499230&p=1" scrolling="no" width="100%" height="500" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 ## 编程实现
 
