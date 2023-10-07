@@ -1,5 +1,50 @@
 # 基本二叉树
 
+## 二叉树的表示方法
+
+### 孩子兄弟法
+
+```c
+// 树节点的定义
+typedef struct TreeNode {
+    int data;
+    struct TreeNode *firstChild;
+    struct TreeNode *nextSibling;
+} TreeNode;
+
+// 创建树节点
+TreeNode* createTreeNode(int data) {
+    TreeNode *newNode = (TreeNode*)malloc(sizeof(TreeNode));
+    newNode->data = data;
+    newNode->firstChild = NULL;
+    newNode->nextSibling = NULL;
+    return newNode;
+}
+
+// 在parent节点下插入一个新的孩子节点
+void insertChild(TreeNode *parent, TreeNode *child) {
+    if (parent->firstChild == NULL) {
+        parent->firstChild = child;
+    } else {
+        TreeNode *sibling = parent->firstChild;
+        while (sibling->nextSibling != NULL) {
+            sibling = sibling->nextSibling;
+        }
+        sibling->nextSibling = child;
+    }
+}
+
+// 先序遍历打印树
+void preorderTraversal(TreeNode *root) {
+    if (root == NULL) {
+        return;
+    }
+    printf("%d ", root->data);
+    preorderTraversal(root->firstChild);
+    preorderTraversal(root->nextSibling);
+}
+```
+
 ## 二叉树的遍历
 
 二叉树的遍历方法，根据根节点在遍历一颗子树中的顺序位置来区分有三种：
