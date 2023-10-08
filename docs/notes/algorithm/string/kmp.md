@@ -122,13 +122,6 @@ int KMP(const char *text, const char *pattern)
     int *next = (int *)malloc(sizeof(int) * m);
     computeNext(pattern, next);
 
-    printf("the next :");
-    for (int i = 0; i < m; i++)
-    {
-        printf("%d ", next[i]);
-    }
-    printf("\n");
-
     int i = 0; // text中的当前位置
     int j = 0; // pattern中的当前位置
 
@@ -157,13 +150,6 @@ int KMPWithNextVal(const char *text, const char *pattern)
 
     int *nextval = (int *)malloc(sizeof(int) * m);
     computeNextVal(pattern, nextval);
-
-    printf("the nextval :");
-    for (int i = 0; i < m; i++)
-    {
-        printf("%d ", nextval[i]);
-    }
-    printf("\n");
 
     int i = 0; // text中的当前位置
     int j = 0; // pattern中的当前位置
