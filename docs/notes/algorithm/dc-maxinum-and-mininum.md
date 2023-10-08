@@ -5,13 +5,13 @@
 ```c
 #include <stdio.h>
 
-struct MinMax {
+struct BestValue {
     int min;
     int max;
 };
 
-struct MinMax findMinMax(int arr[], int low, int high) {
-    struct MinMax result, left, right, mid;
+struct BestValue findMinMax(int arr[], int low, int high) {
+    struct BestValue result, left, right, mid;
     int midIndex;
 
     // 当只有一个元素时，最大值和最小值都是该元素
@@ -58,7 +58,7 @@ int main() {
     int arr[] = {5, 8, 3, 9, 1, 6, 2, 7, 4};
     int n = sizeof(arr) / sizeof(arr[0]);
 
-    struct MinMax result = findMinMax(arr, 0, n - 1);
+    struct BestValue result = findMinMax(arr, 0, n - 1);
 
     printf("Minimum value: %d\n", result.min);
     printf("Maximum value: %d\n", result.max);
