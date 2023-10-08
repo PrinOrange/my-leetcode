@@ -68,65 +68,138 @@ NEXT 数组的第 $i$ 个元素 $next[i]$ 表示模式串 $P_{0}$ 到 $P_{i}$ �
 #include <stdio.h>
 #include <string.h>
 
-void getNext(const char* pattern, int* next) {
-    int i = 0;
-    int j = -1;
-    int len = strlen(pattern);
+// 计算next数组
+void computeNext(const char *pattern, int next[])
+{
+    int i, j;
+    int m = strlen(pattern);
 
     next[0] = -1;
+    i = 0;
+    j = -1;
 
-    while (i < len - 1) {
-        if (j == -1 || pattern[i] == pattern[j]) {
-            i++;
-            j++;
-            next[i] = j;
-        } else {
+    while (i < m)
+    {
+        while (j >= 0 && pattern[i] != pattern[j])
             j = next[j];
-        }
+        i++;
+        j++;
+        next[i] = j;
     }
 }
 
-int kmpSearch(const char* text, const char* pattern) {
-    int textLen = strlen(text);
-    int patternLen = strlen(pattern);
-    int* next = (int*)malloc(sizeof(int) * patternLen);
+// 计算nextval数组
+void computeNextVal(const char *pattern, int nextval[])
+{
+    int i, j;
+    int m = strlen(pattern);
 
-    getNext(pattern, next);
+    nextval[0] = -1;
+    i = 0;
+    j = -1;
 
-    int i = 0;
-    int j = 0;
+    while (i < m)
+    {
+        while (j >= 0 && pattern[i] != pattern[j])
+            j = nextval[j];
+        i++;
+        j++;
+        if (pattern[i] == pattern[j])
+            nextval[i] = nextval[j];
+        else
+            nextval[i] = j;
+    }
+}
 
-    while (i < textLen && j < patternLen) {
-        if (j == -1 || text[i] == pattern[j]) {
-            i++;
-            j++;
-        } else {
+// KMP算法匹配字符串
+int KMP(const char *text, const char *pattern)
+{
+    int n = strlen(text);
+    int m = strlen(pattern);
+
+    int *next = (int *)malloc(sizeof(int) * m);
+    computeNext(pattern, next);
+
+    printf("the next :");
+    for (int i = 0; i < m; i++)
+    {
+        printf("%d ", next[i]);
+    }
+    printf("\n");
+
+    int i = 0; // text中的当前位置
+    int j = 0; // pattern中的当前位置
+
+    while (i < n)
+    {
+        while (j >= 0 && text[i] != pattern[j])
             j = next[j];
+        i++;
+        j++;
+        if (j == m)
+        {
+            free(next);
+            return i - j; // 匹配成功，返回匹配的起始位置
         }
     }
 
     free(next);
-
-    if (j == patternLen) {
-        return i - j; // 返回匹配位置的起始索引
-    } else {
-        return -1; // 匹配失败
-    }
+    return -1; // 匹配失败，返回-1
 }
 
-int main() {
-    const char* text = "ABABABABCABABABA";
-    const char* pattern = "ABABC";
+// KMP算法匹配字符串（使用nextval数组）
+int KMPWithNextVal(const char *text, const char *pattern)
+{
+    int n = strlen(text);
+    int m = strlen(pattern);
 
-    int result = kmpSearch(text, pattern);
+    int *nextval = (int *)malloc(sizeof(int) * m);
+    computeNextVal(pattern, nextval);
 
-    if (result != -1) {
-        printf("Pattern found at index: %d\n", result);
-    } else {
-        printf("Pattern not found\n");
+    printf("the nextval :");
+    for (int i = 0; i < m; i++)
+    {
+        printf("%d ", nextval[i]);
     }
+    printf("\n");
+
+    int i = 0; // text中的当前位置
+    int j = 0; // pattern中的当前位置
+
+    while (i < n)
+    {
+        while (j >= 0 && text[i] != pattern[j])
+            j = nextval[j];
+        i++;
+        j++;
+        if (j == m)
+        {
+            free(nextval);
+            return i - j; // 匹配成功，返回匹配的起始位置
+        }
+    }
+
+    free(nextval);
+    return -1; // 匹配失败，返回-1
+}
+
+int main()
+{
+    const char *text = "ABABABABCABABABABCABABABABC";
+    const char *pattern = "ABCADABC";
+
+    int pos = KMP(text, pattern);
+    if (pos != -1)
+        printf("Pattern found at position: %d\n", pos);
+    else
+        printf("Pattern not found!\n");
+
+    int pos2 = KMPWithNextVal(text, pattern);
+    if (pos2 != -1)
+        printf("Pattern found at position: %d\n", pos2);
+    else
+        printf("Pattern not found!\n");
 
     return 0;
 }
-
 ```
